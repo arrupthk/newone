@@ -65,6 +65,7 @@ for(var i =0; i<= titles1.length ; i++)
 }
 
 
+//first dom ready to be uploaded
 
 
 
