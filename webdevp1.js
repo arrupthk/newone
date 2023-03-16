@@ -60,12 +60,89 @@ var titles2 = document.querySelectorAll('li:nth-child(even)');
 
 for(var i =0; i<= titles1.length ; i++)
 {
-    titles1[i].style.backgroundColor= "green";
-    titles2[i].style.backgroundColor= "blue";
+   // titles1[i].style.backgroundColor= "green";
+   // titles2[i].style.backgroundColor= "blue";
 }
 
-
+// ----------------------------------------------------------------------------------------------
 //first dom ready to be uploaded
+
+// traversing the dom
+var itml = document.querySelector('#items');
+// parentNode
+console.log(itml.parentNode);
+itml.parentNode.style.backgroundColor = 'orange';
+
+console.log(itml.parentNode.parentNode);
+console.log(itml.parentNode.parentNode.parentNode);
+
+// childnode - HTML collection and irrelevant node list
+
+
+console.log(itml.parentNode.childNodes);
+
+//children- more precise - HTML collection
+
+console.log(itml.children[2]);
+itml.children[2].style.backgroundColor = 'yellow';
+
+//firstchild
+
+console.log(itml.firstChild);
+console.log(itml.firstElementChild);
+itml.firstElementChild.innerText = "brown mundae";
+itml.lastElementChild.innerText = "blue eyes";
+itml.children[3].textContent = " dehradun";
+itml.children[2].style.fontweight = " bold";
+itml.children[2].style.background = " red";
+itml.children[3].textContent = " dehradun";
+
+// previous sibling
+
+console.log(itml.previousElementSibling);
+itml.previousElementSibling.style.backgroundColor = " purple";
+
+//createElement
+
+// Create a div
+
+var newDiv = document.createElement('div');
+console.log(newDiv);
+//add class name
+newDiv.className ="HEYYA!";
+// add id
+newDiv.id = "HMMM";
+// add attr
+newDiv.setAttribute('title','Hello div');
+console.log(newDiv);
+// create text node
+var newDivtext = document.createTextNode('hello world');
+// add text to div
+newDiv.appendChild(newDivtext);
+console.log(newDiv);
+
+var container = document.querySelector('header, container');
+var h1 = document.querySelector('header h1');
+console.log(newDiv);
+
+newDiv.style.fontSize = '30px';
+container.insertBefore(newDiv,h1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
