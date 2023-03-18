@@ -1,0 +1,27 @@
+ 
+ 
+ <html> 
+    <head>
+    <form onsubmit="SubmitToLocalStorage(event)">
+    Name <br>
+    <input type="text" name="Username"required/> <br>
+    Email_Id <br>
+    <input type="email" name="Email_Add" required/><br>
+    Phone_Number<br>
+    <input type="tel"  name="Phone_Number"/><br><br> <br>
+    <button> Submit </button>
+    </form>
+    <script>
+        function SubmitToLocalStorage(event) {
+            event.preventDefault();
+            const Name =event.target.Username.value; // to add the data to Local storage
+            const Email= event.target.Email_Add.value;
+            const Phone_Number = event.target.Phone_Number.value;
+            localStorage.setItem('Full_Name',Name);
+            localStorage.setItem('Email',Email);
+            localStorage.setItem('Contact',Phone_Number);
+
+        }
+    </script>
+        </head>
+</html>
