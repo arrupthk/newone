@@ -12,6 +12,23 @@
     <button> Submit </button>
     </form>
     <ul id='listofitems'> </ul>
+    <style>
+         form {
+            background-color: blueviolet;
+            color: #400b0b;
+            text-align: center;
+            font-weight: bold;
+            font-style: italic;
+            
+         }
+input { 
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: small;
+    font-style: italic;
+    color: #400b0b;
+}
+
+    </style>
     <script>
         function SubmitToLocalStorage(event) {
             event.preventDefault(); // prevent from refreshing
@@ -37,8 +54,18 @@
             const B = document.createElement('li');
             B.textContent = obj.Name +' - '+ obj.Email+' - '+ obj.Phone_Number;
             A.appendChild(B)
+            
+            const delButton = document.createElement('input');
+            delButton.type =" button";
+            delButton.value ="Delete";
+            delButton.onclick=() =>{
+                localStorage.removeItem(obj.Email);
+                A.remove(B)
+            }     
+            B.appendChild(delButton)
+            A.appendChild(B)
         }
-        
+
     </script>
         </head>
 </html>
