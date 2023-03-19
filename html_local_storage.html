@@ -11,25 +11,34 @@
     <input type="tel"  name="Phone_Number"/><br><br> <br>
     <button> Submit </button>
     </form>
+    <ul id='listofitems'> </ul>
     <script>
         function SubmitToLocalStorage(event) {
-            event.preventDefault();
+            event.preventDefault(); // prevent from refreshing
             const Name =event.target.Username.value; // to add the data to Local storage
             const Email= event.target.Email_Add.value;
             const Phone_Number = event.target.Phone_Number.value;
-            localStorage.setItem('Full_Name',Name);
-            localStorage.setItem('Email',Email);
-            localStorage.setItem('Contact',Phone_Number);
+          //  localStorage.setItem('Full_Name',Name);
+          //  localStorage.setItem('Email',Email);
+          //  localStorage.setItem('Contact',Phone_Number);
 
             const obj = {
                 Name,
                 Email,
                 Phone_Number
             }
-            localStorage.setItem('user_details', obj);
+           // localStorage.setItem('user_details', obj);
             localStorage.setItem('user_details1', JSON.stringify(obj));
-              
+            localStorage.setItem(obj.Email, JSON.stringify(obj)); 
+            showUserOnScreen(obj)    
         }
+        function showUserOnScreen(obj){
+            const A = document.getElementById('listofitems');
+            const B = document.createElement('li');
+            B.textContent = obj.Name +' - '+ obj.Email+' - '+ obj.Phone_Number;
+            A.appendChild(B)
+        }
+        
     </script>
         </head>
 </html>
