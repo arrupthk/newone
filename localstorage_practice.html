@@ -1,0 +1,87 @@
+
+
+
+<html> 
+    <head>
+    <form onsubmit="SubmitToLocalStorage(event)">
+    Name <br>
+    <input type="text" name="Username"required/> <br>
+    Email_Id <br>
+    <input type="email" name="Email_Add" required/><br>
+    Phone_Number<br>
+    <input type="tel"  name="Phone_Number"/><br><br> <br>
+    <button> Submit </button>
+    </form>
+    <script>
+        function SubmitToLocalStorage(event) {
+            event.preventDefault();// to prevent page from refresh
+            const Name =event.target.Username.value; // to add the data to Local storage
+            const Email= event.target.Email_Add.value;
+            const Phone_Number = event.target.Phone_Number.value;
+            localStorage.setItem('Full_Name',Name); //  key and value pair
+            localStorage.setItem('Email',Email);
+            localStorage.setItem('Contact',Phone_Number);
+        }
+    </script>
+        </head>
+</html>
+
+
+
+
+
+
+
+// functionality for foreach
+// here js takes arrayitems one by one and calls that fucntion for eachof them
+// it also passes indexof that array item, and original array
+// here the function executes for every item and in the end undefined is returned to the column
+working of foreach
+//newArr = [2,8,9,6].foreach(logArray);
+function logarray(element, index,array)
+{
+    console.log('array ['+ index + ']=' + element);
+}
+
+
+// map function
+// a fucntion is passed to map which will then be called for each and every item of the array
+// the item, index and the original array willbe passed to the function of each of its invocation
+the only difference is that map return a new array whcih consists of values which returns as execution
+of the fucntion for each of the array items
+
+// eg :- modified = [2,3,4,7].map(double);
+function double(element, index, array) {
+    console.log('array ['+ index + ']=' + element*2)
+    return element*2;
+}
+
+
+what is a block in js?
+// block is known as combined statement
+// combining statements in a group
+where  JS expects one statement
+
+let and const are block scope and var is function scope
+//lexical scope- block inside block
+// here the function scope can access variable from parent scope
+
+
+// closure- function aong with its lexical scope
+function x(){
+    var a= 7;
+    function y(){
+        console.log(a);
+    }
+    y()
+}
+x();    // prints a=7
+
+also // function x(){
+    var a= 7;
+    
+    y() or return y;
+}
+x(function y(){
+    console.log(a);
+});
