@@ -1,0 +1,103 @@
+ 
+ <html> 
+    <head>
+    <form onsubmit="SubmitToLocalStorage(event)">
+    Name <br>
+    <input type="text" name="Username"required/> <br>
+    Email_Id <br>
+    <input type="email" name="Email_Add" required/><br>
+    Phone_Number<br>
+    <input type="tel"  name="Phone_Number"/><br><br> <br>
+    <button> Submit </button>
+    </form>
+    <script>
+    function SubmitToLocalStorage(event) {
+        event.preventDefault(); // prevent from refreshing
+        const Name =event.target.Username.value; // to add the data to Local storage
+        const Email= event.target.Email_Add.value;
+        const Phone_Number = event.target.Phone_Number.value;
+      //  localStorage.setItem('Full_Name',Name);
+      //  localStorage.setItem('Email',Email);
+      //  localStorage.setItem('Contact',Phone_Number);
+
+        const obj = {
+            Name,
+            Email,
+            Phone_Number
+        }
+       // localStorage.setItem('user_details', obj);
+        localStorage.setItem('user_details1', JSON.stringify(obj));
+        localStorage.setItem(obj.Email, JSON.stringify(obj)); 
+            showUserOnScreen(obj)    
+
+    }
+    </script>
+     </head>
+     </html>
+
+//-----------------------------------------------------
+
+Delete functionality
+
+<html>
+    <head>
+        <form onsubmit="SubmitToLocalStorage(event)">
+   <b> Choose expense amount </b>
+    <input type="text" name="Expense_amt"required/> 
+   <b> Choose Description </b>
+    <input type="text" name="Choose_Description"required/> 
+   <b> Choose a category </b>
+    <select>
+        <option> Movie </option>
+        <option> Bowling </option>    
+        <option> Go-Karting </option>    
+        <option> Adventure Park </option>    
+        </select>
+    <button> Add Expense </button> 
+    </form>
+    <ul id='listing_items'> </ul>
+
+    <script>
+    function SubmitToLocalStorage(event) {
+        event.preventDefault(); 
+        const A = event.target.Expense_amt.value; 
+        const B= event.target.Choose_Description.value;
+        
+        const obj2= {
+            A,
+            B
+        }
+        localStorage.setItem('user_1', JSON.stringify(obj2));
+        showUserOnScreen(obj2)    
+    }
+function showUserOnScreen(obj2){
+    const C = document.getElementById('listing_items');
+            const D = document.createElement('li');
+            D.innerText= obj2.A +' - '+ obj2.B;
+            C.appendChild(D);
+
+            
+            const delButton = document.createElement('input');
+            delButton.type =" button";
+            delButton.value ="Delete";
+            delButton.onclick=() =>{
+                localStorage.removeItem(obj2.A);
+                C.removeChild(D)
+
+                const editButton = document.createElement('input');
+                editButton.type = "button";
+                editButton.value= "Edit";
+                editButton.onclick = () => {
+                localStorage.removeItem(obj2.A);
+                A.removeChild(B)
+    document.getElementById('usernameinput_tag').value = obj.Name;
+    document.getElementById('emailinput_tag').value = obj.Email;
+    document.getElementById('phoneinput_tag').value = obj.Phone_Number
+            }
+          D.appendChild(delButton)
+          C.appendChild(D)
+}
+
+    </script>
+    </head>
+</html>
