@@ -1,4 +1,4 @@
-
+/*
 var obj = {
     num:5
 }
@@ -50,6 +50,31 @@ x();*/
 // differencebetween two  is because of hoisting
 
 // first class functions- the ability to use functions as values is known as fist class functions
+// functions are first class citizen in js, we can take a fxn and pass it into another
+//function and these are called call back fxn
+// function x(){}
+//x(function(y){})      == here y is the callback function
+// eg- setTimeout(function z(){ console.log("timer")};, 5000) --- here function z is the call back function
 
-//currying- one function returning another function and we want to call both of them
+// at first fucntion would get called
+// the set time outs on call back queue would get called
+// asynchronous js and event loop
 
+// event loop checks the call back queue and puts the function in call stack. it works like a gate keeper
+
+
+function fun1(){
+    console.log("a")
+    }
+    function fun2(){
+    console.log("b")
+    }
+    fun2()
+    fun1()
+
+
+   // Q) what are the things not part of js?
+    // a) set out time, DOM APIs, fetch(), console, location, url are part of Web APIs not JS
+// Q) How JS uses web browsers?
+    //A) browsers gives access to java script engines to use the functionality through a keyword called "windows".
+    // so windows gives access as it is a global object.
