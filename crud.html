@@ -1,0 +1,77 @@
+
+<html>
+    <head>
+        <title> Expense Tracker </title>
+        <form onsubmit="SubmitToLocalStorage(event)">
+   <b> Choose expense amount </b>
+    <input type="text" name="Expense_amt" id="A_tag" required/> 
+   <b> Choose Description </b>
+    <input type="text" name="Choose_Description" id="B_tag"required/> 
+   <b> Choose a category </b>
+    <select>
+        <option> Movie </option>
+        <option> Bowling </option>    
+        <option> Go-Karting </option>    
+        <option> Adventure Park </option>    
+        </select>
+    <button> Add Expense </button> 
+    </form>
+    <ul id='listing_items'> </ul>
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js/"> // minified version of axion
+
+    </script> 
+    <script>
+    function SubmitToLocalStorage(event) {
+        event.preventDefault(); 
+        const A = event.target.Expense_amt.value; 
+        const B= event.target.Choose_Description.value;
+        
+        const obj2=
+        {
+            A,
+            B
+        }
+
+        axios.post("https://crudcrud.com/api/ea0e3ab688924461ab40ac41c00940cd/users?page=2", obj2).then((response) => {
+        showUserOnScreen(response.data)    
+           
+            console.log(response)
+        })
+        .catch((err) => {
+            document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>"
+            console.log(err);
+        })
+       // localStorage.setItem('user_1', JSON.stringify(obj2));
+        //showUserOnScreen(obj2)    
+    }
+function showUserOnScreen(obj2){
+    const C = document.getElementById('listing_items');
+//C.innerHTML= '<li> C.innerHTML+  obj2.A +' - '+ obj2.B </li>';      
+            const D = document.createElement('li');
+            D.innerText= obj2.A +' - '+ obj2.B;
+            C.appendChild(D)
+
+            const delButton = document.createElement('input');
+            delButton.type =" button";
+            delButton.value ="Delete";
+            delButton.onclick=() =>{
+                localStorage.removeItem(obj2.A);
+                C.removeChild(D);
+            }
+
+                const editButton = document.createElement('input');
+                editButton.type = "button";
+                editButton.value= "Edit";
+                editButton.onclick = () => {
+    localStorage.removeItem(obj2.A);
+    C.removeChild(D)
+    document.getElementById('A_tag').value = obj2.A;
+    document.getElementById('B_tag').value = obj2.B;                
+            }   
+                D.appendChild(editButton)
+                D.appendChild(delButton)
+                C.appendChild(D)
+}
+    </script>
+    </head>
+</html>
