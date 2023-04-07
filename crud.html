@@ -33,8 +33,7 @@
         }
 
         axios.post("https://crudcrud.com/api/ea0e3ab688924461ab40ac41c00940cd/users?page=2", obj2).then((response) => {
-        showUserOnScreen(response.data)    
-           
+        showUserOnScreen(response.obj2); // used data at place of obj2
             console.log(response)
         })
         .catch((err) => {
