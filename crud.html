@@ -17,7 +17,7 @@
     <button> Add Expense </button> 
     </form>
     <ul id='listing_items'> </ul>
-    <script src= "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js/"> // minified version of axion
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"> // minified version of axion
 
     </script> 
     <script>
@@ -25,16 +25,14 @@
         event.preventDefault(); 
         const A = event.target.Expense_amt.value; 
         const B= event.target.Choose_Description.value;
-        
         const obj2=
         {
             A,
             B
         }
-
-        axios.post("https://crudcrud.com/api/ea0e3ab688924461ab40ac41c00940cd/users?page=2", obj2).then((response) => {
-        showUserOnScreen(response.obj2); // used data at place of obj2
-            console.log(response)
+        axios.post("https://crudcrud.com/api/7072c880969449d4bdf8816901ccc755/appointment", obj2).then((response) => {
+        showNewUserOnScreen(response.obj2); // used data at place of obj2
+           // console.log(response)
         })
         .catch((err) => {
             document.body.innerHTML = document.body.innerHTML + "<h4> Something went wrong </h4>"
@@ -43,7 +41,32 @@
        // localStorage.setItem('user_1', JSON.stringify(obj2));
         //showUserOnScreen(obj2)    
     }
-function showUserOnScreen(obj2){
+window.addEventListener("DOMContentLoaded", () =>{
+    axios.get(" https://reqres.in/api/users/2").then((response)=>{
+        console.log(response)
+        for(var i=0;i<response.obj2.length;i++){
+showNewUserOnScreen(response.obj2[i])
+        }
+    })
+    .catch((err)=>{
+        console.log("something wrong happened")
+    })
+    const localStorageObj = localStorage;
+    const localstoragekeys = Object.keys(localStorageObj);
+
+    for(var i=0; i<localstoragekeys.length; i++){
+        const key = localstoragekeys[i]
+        const userDetailsString = localStorageObj[key];
+        const userDetailsObj = JSON.parse(userDetailsString)
+        showNewUserOnScreen(userDetailsObj)
+
+    }
+
+})
+    function showUserOnScreen(obj2){
+        document.getElementById('A_tag').value = ' ';
+        document.getElementById('B_tag').value = ' ';
+
     const C = document.getElementById('listing_items');
 //C.innerHTML= '<li> C.innerHTML+  obj2.A +' - '+ obj2.B </li>';      
             const D = document.createElement('li');
