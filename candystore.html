@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy Store </title>
+</head>
+<body>
+    <form onsubmit="SubmitCloudStorage(event)">
+        Candy Name<br>
+            <input type="text" name="Candy" id="name" placeholder ="enter candy name" required /> <br>
+        Description <br>
+             <input type="text" name="Description" id="description" placeholder ="enter description" required /><br>
+        Price<br>
+        <input type="text" name="Purchased" id="price" placeholder ="enter price"/><br> 
+        Quantity<br>
+        <input type="text" name="Purchased" id="quantity" placeholder ="enter quantity"/><br><br>
+
+        <button> Add Item </button>
+    </form>
+        <ul id='listofitems'> </ul>
+       
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+    <script>
+
+        function SubmitToLocalStorage(event) {
+            event.preventDefault(); // prevent from refreshing
+            const name = event.target.name.value; // to add the data to Local storage
+            const Description = event.target.Description.value;
+            const Purchased = event.target.Purchased.value;
+            const Quantity = event.target.quantity.value;
+
+
+            const obj = {
+                Name,
+                Description,
+                Purchased,
+                Quality            }
+             axios.post("https://crudcrud.com/api/c0195a87c3f04db58ccf5b39b589908f/candystore",obj)
+            .then((response)=>{
+                console.log(response)
+            }).catch((err)=>{
+                console.log(err)    
+            })
+
+            storedata()
+        }
+        
+        window.addEventListener("DOMContentLoaded",()=>{
+            axios.get("https://crudcrud.com/api/c0195a87c3f04db58ccf5b39b589908f/candystore")
+
+            .then((response)=>{
+                console.log(response)
+                for(var i=0;i<response.data.length;i++){
+                    ShowNewUserOnscreen(response.data[i])
+                }
+            }).catch((error)=>{
+                console.log(error)
+            }) 
+        })
+
+        function  storedata(sale)
+        {
+            const A = document.getElementById('listofitems');
+            const B = document.createElement('li');
+            B.textContent = sale.Amount + ' - ' + sale.Description + ' - ' + sale.Price + ' '+ sale.quantity;
+            A.appendChild(B)
+
+            const delButton = document.createElement('input');
+            delButton.type = " button";
+            delButton.value = "Delete";
+            delButton.onclick = async() => {
+                try{
+                axios.delete('https://crudcrud.com/api/c0195a87c3f04db58ccf5b39b589908f/candystore/${sale._id}')
+                A.removeChild(B)
+                }
+                catch(err){
+                    console.log(err)
+                }
+            }
+
+            const editButton = document.createElement('input');
+            editButton.type = "button";
+            editButton.value = "Edit";
+            editButton.onclick = async() => {
+                A.removeChild(B)
+                axios.delete('https://crudcrud.com/api/c0195a87c3f04db58ccf5b39b589908f/candystore/${sale._id}')
+                .then(()=> {
+                    
+                document.getElementById('nameinput_tag').value = sale.name
+                document.getElementById('desinput_tag').value = sale.description
+                document.getElementById('priceinput_tag').value = sale.price
+                document.getElementById('quantityinput_tag').value = sale.quantity
+
+                })
+                }
+            }
+        
+
+
+        
+    </script>
+</body>
+</html>
